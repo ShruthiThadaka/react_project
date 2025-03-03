@@ -267,23 +267,8 @@ const LandingPage = ()=>{
                         <li><a href="#" className="text-decoration-none text-light">Press</a></li>
                       </ul>
                     </div>
-                    <div className="col-lg-2 col-6 mb-4 mb-lg-0">
-                      <h6 className="mb-3 text-white">Resources</h6>
-                      <ul className="list-unstyled footer-links">
-                        <li className="mb-2"><a href="#" className="text-decoration-none text-light">Documentation</a></li>
-                        <li className="mb-2"><a href="#" className="text-decoration-none text-light">Help Center</a></li>
-                        <li className="mb-2"><a href="#" className="text-decoration-none text-light">API</a></li>
-                        <li><a href="#" className="text-decoration-none text-light">Status</a></li>
-                      </ul>
-                    </div>
-                    <div className="col-lg-2 col-6 mb-4 mb-lg-0">
-                      <h6 className="mb-3 text-white">Legal</h6>
-                      <ul className="list-unstyled footer-links">
-                        <li className="mb-2"><a href="#" className="text-decoration-none text-light">Terms</a></li>
-                        <li className="mb-2"><a href="#" className="text-decoration-none text-light">Privacy</a></li>
-                        <li><a href="#" className="text-decoration-none text-light">Cookies</a></li>
-                      </ul>
-                    </div>
+                    
+                    
                     <div className="col-lg-2 col-6">
                       <h6 className="mb-3 text-white">Contact</h6>
                       <ul className="list-unstyled footer-links">
