@@ -13,7 +13,6 @@ const LandingPage = ()=>{
     }
     return (
         <div className="App bg-dark">
-              {/* Navigation */}
               <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
                 <div className="container">
                   <a className="navbar-brand" href="#home">
