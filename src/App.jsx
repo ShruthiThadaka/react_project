@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LandingPage from './LandingPage';
 import Login from './Pages/Login';
 import HomePage from './Pages/Homepage';
-import Coin from './Pages/CoinPage';
+import CoinPage from './Pages/CoinPage';
 
 function App() {
 
@@ -18,7 +18,7 @@ function App() {
       <Route path="/" element={<LandingPage/>} />
       <Route path='/Login' element={<Login/>}/>
       <Route path='/Homepage/*' element={<HomePage/>}/>
-      {/* <Route path="/coin" element={<Coin />} /> Add this */}
+      {/* <Route path="/coins/:id" element={<CoinPage />} />  */}
 
     </Routes>
     </BrowserRouter>

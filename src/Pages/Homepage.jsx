@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Home from "./Home"
 import Header from "../Components/Header"
-import Coin from "./CoinPage"
 import CoinPage from "./CoinPage"
 import { makeStyles } from '@mui/styles';
 import CryptoContext from "../CryptoContext"
@@ -20,6 +19,7 @@ const HomePage = () => {
 
     const classes = useStyles()
     return (
+        
         <CryptoContext>
             <div className={classes.homePage}>
                 <Header />
@@ -27,6 +27,8 @@ const HomePage = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/coins/:id" element={<CoinPage />} />
                 </Routes>
+              
+
             </div>
         </CryptoContext>
 
