@@ -58,6 +58,7 @@ const MarketData = styled("div")(({ theme }) => ({
   paddingTop: "10px",
   width: "100%",
   display:"flex",
+  flexDirection:"column",
   justifyContent: "space-around",
   [theme.breakpoints.down("md")]: {
     display: "flex",
