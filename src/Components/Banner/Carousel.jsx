@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
         height: "50%",
         display: "flex",
         alignItems: "center",
+        textDecoration: "none"
     },
     carouselItem: {
         display: "flex",
@@ -53,7 +54,7 @@ const Carousel = () => {
                     &nbsp;
                     <span style={{
                         color: profit > 0 ? "rgb(14, 203, 129)" : "red",
-                        fontWeight: 500,
+                        fontWeight: 500, 
                     }}>{profit && "+"} {coin?.price_change_percentage_24h?.toFixed(2)}%</span>
                 </span>
                 <span style={{ fontSize: 22, fontWeight: 500 }}>

@@ -5,8 +5,7 @@ import CoinPage from "./CoinPage"
 import { makeStyles } from '@mui/styles';
 import CryptoContext from "../CryptoContext"
 import 'react-alice-carousel/lib/alice-carousel.css';
-
-
+import Alert from "../Components/Alert";
 
 const HomePage = () => {
     const useStyles = makeStyles(() => ({
@@ -20,17 +19,15 @@ const HomePage = () => {
     const classes = useStyles()
     return (
         
-        <CryptoContext>
+        // <CryptoContext.Provider>
             <div className={classes.homePage}>
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/coins/:id" element={<CoinPage />} />
                 </Routes>
-              
-
             </div>
-        </CryptoContext>
+        // </CryptoContext.Provider>
 
 
     )

@@ -3,6 +3,8 @@ import { makeStyles } from "@mui/styles"
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import { CryptoState } from "../CryptoContext"
+import Login from "../Pages/Login"
+import UserSidebar from "./Authentication/UserSidebar"
 
 const useStyles = makeStyles(() => ({
     title: {
@@ -18,7 +20,7 @@ const Header = () => {
 
     const navigate = useNavigate();
 
-    const {currency,setCurrency} = CryptoState()
+    const { currency, setCurrency, user } = CryptoState()
 
     console.log(currency)
 
@@ -44,11 +46,12 @@ const Header = () => {
                                 height: 40,
                                 marginRight: 15,
                             }}
-                            value = {currency}
-                            onChange={(e)=>setCurrency(e.target.value)}>
+                            value={currency}
+                            onChange={(e) => setCurrency(e.target.value)}>
                             <MenuItem value={"USD"}>USD</MenuItem>
                             <MenuItem value={"INR"}>INR</MenuItem>
                         </Select>
+                        {user ? <UserSidebar /> :""}
                     </Toolbar>
                 </Container>
             </AppBar>
