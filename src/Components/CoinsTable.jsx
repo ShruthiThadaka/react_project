@@ -14,9 +14,7 @@ const CoinsTable = () => {
     const navigate = useNavigate();
 
     const { currency,symbol, coins, loading, fetchCoins } = CryptoState();
-
-
-
+    
     console.log(coins)
 
     useEffect(() => {

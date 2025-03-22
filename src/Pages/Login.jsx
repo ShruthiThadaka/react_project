@@ -1,17 +1,18 @@
-import { AppBar, Box, Tab, Tabs } from "@mui/material";
+import { AppBar, Box, Tab, Tabs, Typography, useMediaQuery } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginPage from "../Components/Authentication/LoginPage";
 import Signup from "../Components/Authentication/Signup";
 import { makeStyles } from "@mui/styles";
 import { CryptoState } from "../CryptoContext";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import Alert from "../Components/Alert";
 import GoogleButton from "react-google-button";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../Firebase";
+import cryptoLogo from '../assets/crypto.png';
 
-const theme = createTheme(); // Create a default theme
+const theme = createTheme();
 const useStyles = makeStyles((theme) => ({
     google: {
         padding: 24,
@@ -21,20 +22,43 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "center",
         gap: 20,
         fontSize: 20,
+    },
+    home: {
+        backgroundColor: "black",
+        color: "white",
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        gap: "50px",
+        padding: "20px"
+    },
+    box: {
+        backgroundColor: "black",
+        color: "white",
+        textAlign: "center",
+        padding: 20,
+        display:"flex",
+        flexDirection:"column"
     }
+
 }))
 
 const Login = () => {
     const navigate = useNavigate();
-
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-
     const { setAlert } = CryptoState();
 
-    const handleOpen = () => {
-        setOpen(true);
-    };
+    // const handleOpen = () => {
+    //     setOpen(true);
+    // };
+
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+    const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
     const handleClose = () => {
         setOpen(false);
@@ -44,7 +68,7 @@ const Login = () => {
         navigate("/HomePage")
     }
 
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -74,138 +98,46 @@ const Login = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={{ bgcolor: 'background.paper', color: "white", borderRadius: 10, width: 350 }}>
-                <AppBar position="static" style={{ backgroundColor: "transparent", color: "white" }}>
-
-                    <Tabs value={value}
-                        onChange={handleChange}
-                        variant="fullWidth"
-                        style={{ borderRadius: 10 }}>
-                        <Tab label="Login" />
-                        <Tab label="Sign Up" />
-                    </Tabs>
-
-                </AppBar>
-                {value === 0 && <LoginPage handleClose={handleClose} />}
-                {value === 1 && <Signup handleClose={handleClose} />}
-                <Box className={classes.google}>
-                    <span>OR</span>
-                    <GoogleButton style={{ width: "100%", outline: "none" }}
-                        onClick={signInWithGoogle} />
-
+            <Box className={classes.home}
+             sx={{flexDirection: isMobile ? "column" : isTablet ? "row" : "row",
+                gap: isMobile ? "20px" : isTablet ? "30px" : "50px",
+                padding: isMobile ? "10px" : isTablet ? "15px" : "20px",
+                alignItems:"center"
+            }}>
+                <Box className={classes.box}>
+                    {/* <Typography variant="h3">CryptoHub</Typography> */}
+                    <img src={cryptoLogo} alt="CryptoHub Logo" width={isMobile ? "250px" :isTablet ? "350px" : "500px"} height={isMobile ? "125px" : isTablet ? "200px" : "250px"} />
+                    {isTablet && (
+                    <img src="https://www.flatworldsolutions.com/IT-services/images/popular-cryptocurrencies-to-invest-in-2024.webp" alt="" height={200} width={400} />
+                    )}
+                    {isDesktop && (
+                    <img src="https://www.flatworldsolutions.com/IT-services/images/popular-cryptocurrencies-to-invest-in-2024.webp" alt="" height={250} width={500} />
+                    )}
                 </Box>
-            </Box>
+                <Box sx={{ bgcolor: "black", color: "white", borderRadius: 10, width: 350, padding: 3, border: "2px solid white" }}>
+                    <AppBar position="static" style={{ backgroundColor: "black", color: "white" }}>
+                        <Tabs value={value}
+                            onChange={handleChange}
+                            variant="fullWidth"
+                            style={{ borderRadius: 10 }}>
+                            <Tab label="Login" style={{ color: "white" }} />
+                            <Tab label="Sign Up" style={{ color: "white" }} />
+                        </Tabs>
 
-            <Alert />
+                    </AppBar>
+                    {value === 0 && <LoginPage handleClose={handleClose} />}
+                    {value === 1 && <Signup handleClose={handleClose} />}
+                    <Box className={classes.google}>
+                        <span>OR</span>
+                        <GoogleButton style={{ width: "100%", outline: "none" }}
+                            onClick={signInWithGoogle} />
+
+                    </Box>
+                </Box>
+
+                <Alert />
+            </Box>
         </ThemeProvider>
     )
 }
 export default Login
-
-// import * as React from 'react';
-// import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-// import Sheet from '@mui/joy/Sheet';
-// import CssBaseline from '@mui/joy/CssBaseline';
-// import Typography from '@mui/joy/Typography';
-// import FormControl from '@mui/joy/FormControl';
-// import FormLabel from '@mui/joy/FormLabel';
-// import Input from '@mui/joy/Input';
-// import Button from '@mui/joy/Button';
-// import Link from '@mui/joy/Link';
-// import Select from '@mui/joy/Select';
-// import Option from '@mui/joy/Option';
-// import { useNavigate } from "react-router-dom";
-
-// function ModeToggle() {
-//   const { mode, setMode } = useColorScheme();
-//   const [mounted, setMounted] = React.useState(false);
-//   const navigate = useNavigate();
-
-//     const handleClick = () => {
-//         navigate("/HomePage")
-//     }
-
-//   // necessary for server-side rendering
-//   // because mode is undefined on the server
-//   React.useEffect(() => {
-//     setMounted(true);
-//   }, []);
-//   if (!mounted) {
-//     return <Button variant="soft">Change mode</Button>;
-//   }
-
-//   return (
-//     <Select
-//       variant="soft"
-//       value={mode}
-//       onChange={(event, newMode) => {
-//         setMode(newMode);
-//       }}
-//       sx={{ width: 'max-content' }}
-//     >
-//       <Option value="system">System</Option>
-//       <Option value="light">Light</Option>
-//       <Option value="dark">Dark</Option>
-//     </Select>
-//   );
-// }
-
-// export default function Login() {
-//   return (
-//     <main>
-//         <CssVarsProvider>
-//       <ModeToggle />
-//       <CssBaseline />
-//       <Sheet
-//         sx={{
-//           width: 300,
-//           mx: 'auto', // margin left & right
-//           my: 4, // margin top & bottom
-//           py: 3, // padding top & bottom
-//           px: 2, // padding left & right
-//           display: 'flex',
-//           flexDirection: 'column',
-//           gap: 2,
-//           borderRadius: 'sm',
-//           boxShadow: 'md',
-//         }}
-//         variant="outlined"
-//       >
-//         <div>
-//           <Typography level="h4" component="h1">
-//             <b>Welcome!</b>
-//           </Typography>
-//           <Typography level="body-sm">Sign in to continue.</Typography>
-//         </div>
-//         <FormControl>
-//           <FormLabel>Email</FormLabel>
-//           <Input
-//             // html input attribute
-//             name="email"
-//             type="email"
-//             placeholder="johndoe@email.com"
-//           />
-//         </FormControl>
-//         <FormControl>
-//           <FormLabel>Password</FormLabel>
-//           <Input
-//             // html input attribute
-//             name="password"
-//             type="password"
-//             placeholder="password"
-//           />
-//         </FormControl>
-//         <Button sx={{ mt: 1 /* margin top */,}} style={{
-//             width:85,height:40,backgroundColor:"#EEBC1D",
-//         }} variant='contained'>Log in</Button>
-//         <Typography
-//           endDecorator={<Link href="/sign-up">Sign up</Link>}
-//           sx={{ fontSize: 'sm', alignSelf: 'center' }}
-//         >
-//           Don&apos;t have an account?
-//         </Typography>
-//       </Sheet>
-//       </CssVarsProvider>
-//     </main>
-//   );
-// }

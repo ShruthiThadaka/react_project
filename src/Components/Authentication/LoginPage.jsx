@@ -1,10 +1,22 @@
 import { Box, Button, TextField } from "@mui/material";
-import { useScroll } from "framer-motion"
 import React, { useState } from "react"
 import { CryptoState } from "../../CryptoContext";
 import { auth } from "../../Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+
+const inputStyles = {
+  "& .MuiOutlinedInput-root": {
+      "& fieldset": { borderColor: "white" }, 
+      "&:hover fieldset": { borderColor: "lightgray" }, 
+      "&.Mui-focused fieldset": { borderColor: "white" }, 
+  },
+  "& .MuiInputLabel-root.Mui-focused": {
+        color: "white", 
+    },
+  input: { color: "white" }, 
+  label: { color: "white" }, 
+};
 
 const LoginPage = ({handleClose}) => {
     const [email,setEmail] = useState("");
@@ -13,7 +25,6 @@ const LoginPage = ({handleClose}) => {
     const { setAlert } = CryptoState();
 
     const navigate = useNavigate();
-
 
     const handleSubmit = async () => {
         if (!email || !password) {
@@ -51,11 +62,13 @@ const LoginPage = ({handleClose}) => {
             style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
             <TextField variant="outlined"
                 type="email"
-                label="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} fullWidth />
+                label="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} fullWidth 
+                sx = {inputStyles}/>
 
             <TextField variant="outlined"
                 type="password"
-                label="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} fullWidth />
+                label="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} fullWidth 
+                sx = {inputStyles}/>
 
             <Button variant="contained" size="large" style={{backgroundColor:"#EEBC1D"}} 
             onClick={handleSubmit}>
